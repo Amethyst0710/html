@@ -146,7 +146,8 @@ EvilCircle.prototype.eat = function () {
 };
 
 EvilCircle.prototype.setControls = function () {
-    window.onkeydown = e => {
+    // window.onkeydown = e => {
+    window.addEventListener('keydown', e => {
         switch(e.key) {
           case this.a:
             this.x -= this.velX;
@@ -161,7 +162,7 @@ EvilCircle.prototype.setControls = function () {
             this.y += this.velY;
             break;
         }
-    };
+    })
 }
 
 // 定义一个数组，生成并保存所有的球
@@ -182,8 +183,12 @@ while (balls.length < 25) {
     balls.push(ball);
 }
 
-evil_1 = new EvilCircle(20, 20, 'white', 'w', 'a', 's', 'd')
+evil_1 = new EvilCircle(20, 20, 'white', 'W', 'A', 'S', 'D')
 evil_1.setControls()
+
+evil_2 = new EvilCircle(width- 20,height- 20, 'red', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight')
+evil_2.setControls()
+
 // 定义一个循环来不停地播放
 
 function loop() {
@@ -199,6 +204,10 @@ function loop() {
     evil_1.draw();
     evil_1.update();
     evil_1.eat();
+
+    evil_2.draw();
+    evil_2.update();
+    evil_2.eat();
 
     requestAnimationFrame(loop);
 }
